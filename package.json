@@ -1,0 +1,44 @@
+{
+  "name": "react-orchard",
+  "version": "1.0.0",
+  "description": "Utilities for React + React Native projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/jest/bin/jest.js || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PapayaHealth/react-orchard.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "reactnative",
+    "utilities",
+    "redux",
+    "redux-saga"
+  ],
+  "author": "Martin Ronquillo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PapayaHealth/react-orchard/issues"
+  },
+  "homepage": "https://github.com/PapayaHealth/react-orchard#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.0.3",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.0.3",
+    "lodash": "^4.17.4",
+    "redux-saga": "^0.16.0",
+    "redux-saga-testing": "^1.0.5",
+    "rimraf": "^2.6.2"
+  },
+  "peerDependencies": {
+    "axios": "^0.17.1",
+    "react": "^16.2.0",
+    "redux": "^3.7.2",
+    "react-redux": "^5.0.6"
+  }
+}
