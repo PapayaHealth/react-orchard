@@ -2,7 +2,7 @@
   "name": "react-orchard",
   "version": "1.0.0",
   "description": "Utilities for React + React Native projects.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "node node_modules/jest/bin/jest.js || true"
   },
@@ -23,6 +23,11 @@
   "bugs": {
     "url": "https://github.com/PapayaHealth/react-orchard/issues"
   },
+  "files": [
+    "LICENSE",
+    "Readme.md",
+    "src/"
+  ],
   "homepage": "https://github.com/PapayaHealth/react-orchard#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -40,5 +45,9 @@
     "react": "^16.2.0",
     "redux": "^3.7.2",
     "react-redux": "^5.0.6"
+  },
+  "dependencies": {
+    "qs": "^6.5.1",
+    "url-search-params-polyfill": "^2.0.1"
   }
 }
