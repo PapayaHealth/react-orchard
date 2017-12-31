@@ -63,12 +63,16 @@ export class URLSearch {
     return this;
   }
 
+  fullPathString() {
+    return `${window.location.pathname}?${this.toString()}`;
+  }
+
   get(param) {
     return this.params.get(param);
   }
 
-  fullPathString() {
-    return `${window.location.pathname}?${this.toString()}`;
+  has(param) {
+    return this.params.has(param);
   }
 
   set(param, value) {
@@ -111,16 +115,22 @@ export class AutoUpdatingURLSearch extends URLSearch {
     return super.deleteSingle(param, value);
   }
 
+  fullPathString() {
+    this._initialize(this._search());
+
+    return super.fullPathString();
+  }
+
   get(param) {
     this._initialize(this._search());
 
     return super.get(param);
   }
 
-  fullPathString() {
+  has(param) {
     this._initialize(this._search());
 
-    return super.fullPathString();
+    return super.has(param);
   }
 
   set(param, value) {
