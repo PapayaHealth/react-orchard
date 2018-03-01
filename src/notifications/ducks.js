@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
   } else if (error) {
     return { ...state, error };
   } else if (info) { 
-    return { ...state, info };
+    return { ...state, error: null, info };
   }
 
   return state;
