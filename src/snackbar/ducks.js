@@ -1,7 +1,6 @@
 export const types = {
   CLEAR_SNACKBAR_QUEUE: '@@SNACKBAR/CLEAR_QUEUE',
   HIDE_LATEST_MESSAGE: '@@SNACKBAR/HIDE_LATEST',
-  INIT_SNACKBAR_TIMEOUT: '@@SNACKBAR/INIT_TIMEOUT',  // for saga
 };
 
 export const initialState = { ...{

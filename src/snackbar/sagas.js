@@ -9,7 +9,7 @@ export default () => {
   }
 
   function* watchSnackbarTimeout() {
-    yield takeEvery(types.INIT_SNACKBAR_TIMEOUT, snackbarTimeout);
+    yield takeEvery('SNACKBAR', snackbarTimeout);
   }
 
   return {
