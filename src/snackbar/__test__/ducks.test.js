@@ -1,4 +1,4 @@
-import reducer, { initialState, types } from '../ducks';
+import reducer, { actions, initialState, types } from '../ducks';
 
 describe('CLEAR_SNACKBAR_QUEUE', () => {
   it('should clear queue', () => {
@@ -37,8 +37,8 @@ describe('HIDE_LATEST_MESSAGE', () => {
 
 describe('SNACKBAR', () => {
   it('should save snackbar message', () => {
-    expect(reducer(initialState, { type: 'SNACKBAR', message: 'Success' }))
-      .toEqual({ messages: ['Success'] });
+    expect(reducer(initialState, actions.showSnackbarMessage('Successful')))
+      .toEqual({ messages: ['Successful'] });
   });
 
   it('should return same state if no type match', () => {

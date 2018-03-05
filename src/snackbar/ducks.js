@@ -1,6 +1,11 @@
 export const types = {
   CLEAR_SNACKBAR_QUEUE: '@@SNACKBAR/CLEAR_QUEUE',
   HIDE_LATEST_MESSAGE: '@@SNACKBAR/HIDE_LATEST',
+  SNACKBAR: 'SNACKBAR',  // For easy use
+};
+
+export const actions = {
+  showSnackbarMessage: (message) => ({ type: types.SNACKBAR, message }),
 };
 
 export const initialState = { ...{
@@ -13,7 +18,7 @@ export default (state = initialState, action) => {
       return initialState;
     case types.HIDE_LATEST_MESSAGE:
       return { ...state, messages: [...state.messages.slice(1)] };
-    case 'SNACKBAR':
+    case types.SNACKBAR:
       return { ...state, messages: [...state.messages, action.message] };
 
     default:
