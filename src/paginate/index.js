@@ -1,10 +1,6 @@
-import { makeNamespacedBox } from './ducks';
+import { makeNamespacedBox, types } from './ducks';
 import sagas from './sagas';
 
-export const createPaginator = (namespace, { countKey = 'count', currentKey = 'current',
-  nextKey = 'next', pagesKey = 'pages', previousKey = 'previous', resultsKey = 'results' } = {}) => {
+export const createPaginator = makeNamespacedBox;
 
-  return makeNamespacedBox(namespace, { countKey, currentKey, nextKey, pagesKey, previousKey, resultsKey });
-}
-
-export { sagas };
+export { types, sagas };
