@@ -35,6 +35,6 @@ describe('fetch', () => {
 
     next = saga.next(response);
     expect(next.value)
-      .toEqual(put(namespacelessActions.fetchSuccessful(response.data, { namespace: 'testPaginator' })));
+      .toEqual(put(namespacelessActions.fetchSuccessful(response.data, 'testPaginator')));
   });
 });

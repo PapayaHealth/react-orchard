@@ -7,7 +7,7 @@ export default (api) => {
     const results = yield call(api.get, action.url,
       { params: action.params, paramsSerializer: (params) => Qs.stringify(params, { arrayFormat: 'repeat', skipNulls: true }) });
     
-    yield put(namespacelessActions.fetchSuccessful(results.data, { namespace: action.namespace }));
+    yield put(namespacelessActions.fetchSuccessful(results.data, action.namespace));
   }
 
   function* watchFetch() {
