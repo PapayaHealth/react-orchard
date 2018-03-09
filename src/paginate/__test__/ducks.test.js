@@ -35,7 +35,7 @@ describe('actions and reducer', () => {
       ],
     };
 
-    const action = testPaginator.actions.reset();
+    const action = testPaginator.actions.resetPagination();
 
     expect(testPaginator.reducer(state, action))
       .toEqual(initialState);

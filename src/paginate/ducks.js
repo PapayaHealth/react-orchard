@@ -5,7 +5,7 @@ const prefix = '@@ro-paginate/';
 export const types = {
   FETCH: `${prefix}FETCH`,
   FETCH_SUCCESSFUL: `${prefix}FETCH_SUCCESSFUL`,
-  RESET: `${prefix}RESET`,
+  RESET_PAGINATION: `${prefix}RESET`,
 };
 
 export const initialState = { ...{
@@ -28,8 +28,8 @@ export const makeNamespacedBox = (namespace, urlPattern, { countKey = 'count', c
       params,
       url: pattern.stringify(urlVariables),
     }),
-    reset: () => ({
-      type: types.RESET,
+    resetPagination: () => ({
+      type: types.RESET_PAGINATION,
       namespace,
     }),
   };
@@ -53,7 +53,7 @@ export const makeNamespacedBox = (namespace, urlPattern, { countKey = 'count', c
           previous: action.data[previousPageKey],
           results: action.data[resultsKey],
         };
-      case types.RESET:
+      case types.RESET_PAGINATION:
         return initialState;
 
       default:
