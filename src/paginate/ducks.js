@@ -22,7 +22,7 @@ export const makeNamespacedBox = (namespace, urlPattern, { countKey = 'count', c
   const pattern = new UrlPattern(urlPattern);
   
   const actions = {
-    fetchItems: (urlVariables, params) => ({
+    fetchItems: (urlVariables, params = {}) => ({
       type: types.FETCH,
       namespace,
       params,
