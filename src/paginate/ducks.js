@@ -1,33 +1,38 @@
+import UrlPattern from 'url-pattern';
+
 const prefix = '@@ro-paginate/';
 
 export const types = {
+  FETCH: `${prefix}FETCH`,
+  FETCH_SUCCESSFUL: `${prefix}FETCH_SUCCESSFUL`,
   RESET: `${prefix}RESET`,
-  SEARCH: `${prefix}SEARCH`,
-  SEARCH_SUCCESSFUL: `${prefix}SEARCH_SUCCESSFUL`,
 };
 
-export const makeNamespacedBox = (namespace, { countKey, currentKey, nextKey, pagesKey, previousKey, resultsKey } = {}) => {
+export const initialState = { ...{
+  count: null,
+  current: null,
+  isLoading: false,
+  next: null,
+  pages: null,
+  previous: null,
+  results: null,
+} };
+
+export const makeNamespacedBox = (namespace, urlPattern, { countKey = 'count', currentPageKey = 'current', nextPageKey = 'next', pageCountKey = 'pages', previousPageKey = 'previous', resultsKey = 'results' } = {}) => {
+  const pattern = new UrlPattern(urlPattern);
+  
   const actions = {
+    fetchItems: (urlVariables, params) => ({
+      type: types.FETCH,
+      namespace,
+      params,
+      url: pattern.stringify(urlVariables),
+    }),
     reset: () => ({
       type: types.RESET,
       namespace,
     }),
-    search: (url, params) => ({
-      type: types.SEARCH,
-      namespace,
-      params,
-      url,
-    }),
   };
-
-  const initialState = { ...{
-    count: null,
-    current: null,
-    isLoading: false,
-    next: null,
-    previous: null,
-    results: null,
-  } };
 
   const reducer = (state = initialState, action) => {
     if (action.namespace !== namespace) {
@@ -35,22 +40,21 @@ export const makeNamespacedBox = (namespace, { countKey, currentKey, nextKey, pa
     }
 
     switch(action.type) {
-      case types.SEARCH:
+      case types.FETCH:
         return { ...state, isLoading: true };
-
-      case types.RESET:
-        return initialState;
-      case types.SEARCH_SUCCESSFUL:
+      case types.FETCH_SUCCESSFUL:
         return {
           ...state,
           count: action.data[countKey],
-          current: action.data[currentKey],
+          current: action.data[currentPageKey],
           isLoading: false,
-          next: action.data[nextKey],
-          pages: action.data[pagesKey],
-          previous: action.data[previousKey],
+          next: action.data[nextPageKey],
+          pages: action.data[pageCountKey],
+          previous: action.data[previousPageKey],
           results: action.data[resultsKey],
         };
+      case types.RESET:
+        return initialState;
 
       default:
         return state;
@@ -59,14 +63,13 @@ export const makeNamespacedBox = (namespace, { countKey, currentKey, nextKey, pa
 
   return {
     actions,
-    initialState,
     reducer,
-  }
+  };
 };
 
 export const namespacelessActions = {
-  searchSuccessful: (data, { namespace = void 0 } = {}) => ({
-    type: types.SEARCH_SUCCESSFUL,
+  fetchSuccessful: (data, namespace) => ({
+    type: types.FETCH_SUCCESSFUL,
     namespace,
     data,
   }),
